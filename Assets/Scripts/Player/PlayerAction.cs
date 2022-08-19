@@ -39,7 +39,7 @@ namespace Player
         private void FixedUpdate()
         {
             if (_isPaused) return;
-            if (Vector3.Distance(transform.position, endPoint.position) <= 15) runSpeed = 0.5f;
+            if (Vector3.Distance(transform.position, endPoint.position) <= 15){_animatable.Paused(true); runSpeed = 0.5f;}
             else runSpeed = 0.2f;
             characterController.Move(Vector3.back * runSpeed);
         }

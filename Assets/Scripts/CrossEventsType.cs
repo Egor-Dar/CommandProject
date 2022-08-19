@@ -9,6 +9,7 @@ namespace Base
         public delegate void Death();
         public delegate void Movement(float speed);
         public delegate Transform GetEndPoint();
+        public delegate void EndLevel();
     }
 
     public static class PanelsGeter

@@ -12,7 +12,6 @@ namespace Panels.Main
     {
         [SerializeField][CanBeNull] private Image rateImage;
         [SerializeField] private TextMeshProUGUI moneyText;
-        [SerializeField] private TextMeshProUGUI uniqueText;
 
         private void GetMoney(int count)
         {
@@ -26,18 +25,12 @@ namespace Panels.Main
             rateImage.fillAmount = Mathf.Lerp(0, 1, t);
         }
 
-        private void GetUnique(int count)
-        {
-            uniqueText.text = count.ToString();
-        }
-
         public Delegate[] GetSubscribers()
         {
             return new Delegate[]
             {
                 (BanksDelegates.GetMoneyCount) GetMoney,
                 (BanksDelegates.GetRateCount) GetRate,
-                (BanksDelegates.GetUniqueCount) GetUnique
             };
         }
     }
