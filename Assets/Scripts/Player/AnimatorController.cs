@@ -1,4 +1,7 @@
-﻿namespace Player
+﻿using DG.Tweening;
+using UnityEngine;
+
+namespace Player
 {
     public class AnimatorController : IAnimatable
     {
@@ -18,6 +21,11 @@
         {
 
             _data.GetAnimator().SetBool(_isPaused, value);
+        }
+        public void Shop(bool value)
+        {
+            var y = value?180:360;
+            _data.GetAnimator().transform.DORotate(new Vector3(90,y,0),1f);
         }
 
     }

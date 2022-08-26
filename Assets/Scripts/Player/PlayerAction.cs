@@ -18,6 +18,7 @@ namespace Player
         private IAnimatable _animatable;
         private ISkinned _skinned;
         private bool _isPaused = false;
+        private bool _isShop = false;
         private PlayerDelegates.GetEndPoint _getEndPoint;
 
 
@@ -26,6 +27,11 @@ namespace Player
         {
             _isPaused = !_isPaused;
             _animatable.Paused(_isPaused);
+        }
+        private void OnShop()
+        {
+            _isShop = !_isShop;
+            _animatable.Shop(_isShop);
         }
 
         private void Start()
@@ -63,7 +69,8 @@ namespace Player
                 (PlayerDelegates.Death)End,
                 (PlayerDelegates.Movement)Movement,
                 (PlayerDelegates.SetTransform)SetPosition,
-                (GameDelegates.OnStart)OnStart
+                (GameDelegates.OnStart)OnStart,
+                (GameDelegates.ShopOpenClose) OnShop
             };
         }
 

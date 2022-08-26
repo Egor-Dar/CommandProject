@@ -17,7 +17,8 @@ namespace Panels.Main
         private CanvasGroup _settingsPanel;
         private CanvasGroup _storePanel;
         private PanelState _panelState;
-        private GameDelegates.OnStart onStart;
+        private GameDelegates.OnStart _onStart;
+        private GameDelegates.ShopOpenClose _shopOpenClose;
 
         private void Start()
         {
@@ -26,15 +27,19 @@ namespace Panels.Main
             _panelState = new PanelState();
             
             play.onClick.AddListener(OnPlay);
-//            store.onClick.AddListener(OnStore);
+            store.onClick.AddListener(OnStore);
  //           settings.onClick.AddListener(OnSettings);
         }
 
         private void OnSettings() => _panelState.SetPanel(_settingsPanel);
-        
-        private void OnStore() => _panelState.SetPanel(_storePanel);
 
-        private void OnPlay() => onStart?.Invoke();
+        private void OnStore()
+        {
+          //  _panelState.SetPanel(_storePanel); 
+            _shopOpenClose.Invoke();
+        }
+
+        private void OnPlay() => _onStart?.Invoke();
 
         public void InvokeEvents()
         {
@@ -42,12 +47,14 @@ namespace Panels.Main
 
         public void Subscribe(params Delegate[] subscribers)
         {
-            EventExtensions.Subscribe(ref onStart, subscribers);
+            EventExtensions.Subscribe(ref _onStart, subscribers);
+            EventExtensions.Subscribe(ref _shopOpenClose, subscribers);
         }
 
         public void Unsubscribe(params Delegate[] unsubscribers)
         {
-            EventExtensions.Unsubscribe(ref onStart, unsubscribers);
+            EventExtensions.Unsubscribe(ref _onStart, unsubscribers);
+            EventExtensions.Unsubscribe(ref _shopOpenClose, unsubscribers);
         }
     }
 }

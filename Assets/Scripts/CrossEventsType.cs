@@ -60,6 +60,7 @@ namespace Base
     public static class GameDelegates
     {
         public delegate void OnStart();
+        public delegate void ShopOpenClose();
     }
    
 }

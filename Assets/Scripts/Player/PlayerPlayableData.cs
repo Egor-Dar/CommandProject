@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Player
 {
@@ -8,5 +9,9 @@ namespace Player
         [SerializeField] private ModelLink defaultSkin;
         public Animator GetAnimator() => animator;
         public ModelLink GetDefaultSkin() => defaultSkin;
+        private void Awake()
+        {
+            animator.avatar = defaultSkin.avatar;
+        }
     }
 }
