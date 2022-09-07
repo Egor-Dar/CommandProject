@@ -13,9 +13,13 @@ namespace Player
         public void SetSkin(ModelLink newSkin, Animator animator)
         {
             if (_prefabSkin == newSkin) return;
-            if (_currentSkin != null) Object.Destroy(_currentSkin);
+            if (_currentSkin != null) Object.Destroy(_currentSkin.gameObject);
+            animator.avatar = null;
             _prefabSkin = newSkin;
             _currentSkin = Object.Instantiate(newSkin, animator.transform);
+            animator.enabled = false;
+            animator.avatar = newSkin.avatar;
+            animator.enabled = true;
             animator.Rebind();
         }
     }

@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using Panels;
 using TMPro;
 using UnityEngine;
 
@@ -55,12 +57,18 @@ namespace Base
     {
         public delegate void GoToPlay();
         public delegate void GoToStore();
+        public delegate PanelState GetPanelState();
     }
 
     public static class GameDelegates
     {
         public delegate void OnStart();
         public delegate void ShopOpenClose();
+    }
+    public static class StoreDelegates
+    {
+        public delegate void ListNextSkin();
+        public delegate void ListPreviousSkin();
     }
    
 }

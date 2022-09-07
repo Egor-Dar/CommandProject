@@ -10,7 +10,7 @@ namespace Panels.Main
 {
     public class UpPanel : MonoBehaviour, IEventSubscriber
     {
-        [SerializeField][CanBeNull] private Image rateImage;
+        [SerializeField][CanBeNull] private TextMeshProUGUI[] rateText= new TextMeshProUGUI[2];
         [SerializeField] private TextMeshProUGUI moneyText;
 
         private void GetMoney(int count)
@@ -20,9 +20,15 @@ namespace Panels.Main
 
         private void GetRate(int count)
         {
-            if(rateImage == null) return;
-            var t = Mathf.InverseLerp(0, 100000, count);
-            rateImage.fillAmount = Mathf.Lerp(0, 1, t);
+            if(rateText == null) return;
+            int b = -1;
+            foreach (TextMeshProUGUI t in rateText)
+            {
+                int minusCount = count + b;
+                t.text = minusCount < 0 ? "" : minusCount.ToString();
+                b++;
+            }
+            rateText[^1].text = $"level {count}";
         }
 
         public Delegate[] GetSubscribers()

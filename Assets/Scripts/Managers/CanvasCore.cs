@@ -14,6 +14,7 @@ namespace Managers
         private CanvasGroup _play;
         private CanvasGroup _main;
         private PanelState statePanel;
+        private PanelState GetPanelState() => statePanel;
 
         private void Awake()
         {
@@ -38,7 +39,8 @@ namespace Managers
             return new Delegate[]
             {
                 (GameDelegates.OnStart)GoToPlay,
-                (MainDelegates.GoToStore)GoToMain
+                (MainDelegates.GetPanelState) GetPanelState,
+                (MainDelegates.GoToPlay)GoToMain
             };
         }
     }

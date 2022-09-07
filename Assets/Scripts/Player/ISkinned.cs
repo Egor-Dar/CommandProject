@@ -3,6 +3,7 @@
     public interface ISkinned
     {
         public ModelLink GetCurrentModel();
-        public void SkinDefault();
+        public void ListNextSkin();
+        public void ListPreviousSkin();
     }
 }
